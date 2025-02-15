@@ -2,10 +2,17 @@ import { useState } from "react";
 import List from "./components/List";
 
 function App() {
+  //Hook
   const [list, setList] = useState([
     { key: 1, descripcion: "Practicar React", estado: "En proceso" },
   ]);
   const [tarea, setTarea] = useState("");
+  const handleOnClick = () => {
+    setList([
+      ...list,
+      { key: list.length + 1, descripcion: tarea, estado: "En proceso" },
+    ]);
+  };
 
   return (
     <main className="flex justify-center">
@@ -27,16 +34,7 @@ function App() {
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full
           cursor-pointer"
-            onClick={() => {
-              setList([
-                ...list,
-                {
-                  key: list.length + 1,
-                  descripcion: tarea,
-                  estado: "En proceso",
-                },
-              ]);
-            }}
+            onClick={() => handleOnClick()}
           >
             +
           </button>
