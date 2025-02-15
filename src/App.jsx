@@ -19,6 +19,14 @@ function App() {
     console.log("Lista Actualizada", listSinItemEliminado);
   };
 
+  const completarTarea = (key) => {
+    setList(
+      list.map((item) =>
+        item.key === key ? { ...item, estado: "Completado" } : item
+      )
+    );
+  };
+
   return (
     <main className="flex justify-center">
       <div className="flex flex-col">
@@ -44,7 +52,11 @@ function App() {
             +
           </button>
         </div>
-        <List list={list} eliminarItem={eliminarItem} />
+        <List
+          list={list}
+          eliminarItem={eliminarItem}
+          completarTarea={completarTarea}
+        />
       </div>
     </main>
   );
