@@ -1,4 +1,6 @@
-const List = ({ list }) => {
+import trashIcon from "../assets/trash.svg";
+
+const List = ({ list, eliminarItem }) => {
   return (
     <ul>
       {list.map((item) => (
@@ -10,6 +12,12 @@ const List = ({ list }) => {
               </p>
               <p className="text-sm text-gray-500">{item.estado}</p>
             </div>
+            <button
+              className="cursor-pointer"
+              onClick={() => eliminarItem(item.key)}
+            >
+              <img src={trashIcon} width={20} height={20} />
+            </button>
           </div>
         </li>
       ))}

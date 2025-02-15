@@ -3,15 +3,20 @@ import List from "./components/List";
 
 function App() {
   //Hook
-  const [list, setList] = useState([
-    { key: 1, descripcion: "Practicar React", estado: "En proceso" },
-  ]);
+  const [list, setList] = useState([]);
   const [tarea, setTarea] = useState("");
   const handleOnClick = () => {
     setList([
       ...list,
       { key: list.length + 1, descripcion: tarea, estado: "En proceso" },
     ]);
+    setTarea("");
+  };
+
+  const eliminarItem = (key) => {
+    const listSinItemEliminado = list.filter((item) => item.key !== key);
+    setList(listSinItemEliminado);
+    console.log("Lista Actualizada", listSinItemEliminado);
   };
 
   return (
@@ -39,7 +44,7 @@ function App() {
             +
           </button>
         </div>
-        <List list={list} />
+        <List list={list} eliminarItem={eliminarItem} />
       </div>
     </main>
   );
